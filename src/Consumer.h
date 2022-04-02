@@ -16,13 +16,14 @@ enum data_enum {
 class Consumer {
 public:
 
-	Consumer(double interval, int type);
+	Consumer(double interval, int type, Database* ptr);
 	void ChangePeriod(double time);
 	~Consumer();
-	void consume(Database* d);
-	void start(Database* d);
+	void* consume(void* arg);
+	void start();
 private:
 	double interval;
 	double curr_val;
 	int data_type;
+	Database* DB_ptr;
 };

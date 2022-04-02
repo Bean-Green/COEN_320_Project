@@ -1,12 +1,12 @@
 #include "Consumer.h"
 #include <iostream>
+#include <thread>
 using namespace std;
 
 int main()
 {
 	cout << "welcome to COEN 320 Project Repo!!!" << endl;
 
-	//tester dataset
 	Database bro = Database();
 	Database* DB_ptr = &bro;
 
@@ -17,13 +17,12 @@ int main()
 //		cout << bro.fuel_coms[i] << endl;;
 //	}
 
-	Consumer C1 = Consumer(5, FUEL);
-	Consumer C2 = Consumer(5, RPM);
-	C1.consume(DB_ptr);
-	C2.consume(DB_ptr);
 
 
-
+	Consumer C1 = Consumer(5, FUEL, DB_ptr);
+	Consumer C2 = Consumer(5, RPM, DB_ptr);
+	C1.start();
+	C2.start();
 
 
 	return 0;
