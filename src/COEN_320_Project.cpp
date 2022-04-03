@@ -1,4 +1,4 @@
-#include "Consumer.h"
+#include "Producer.h"
 #include <iostream>
 #include <thread>
 using namespace std;
@@ -10,21 +10,24 @@ int main()
 	Database bro = Database();
 	Database* DB_ptr = &bro;
 
-	cout << "done" << endl;
+	cout << "done creating database" << endl;
 
-//	for (int i = 0; i < 10; i++)
-//	{
-//		cout << bro.fuel_coms[i] << endl;;
-//	}
+	SharedMem sm = SharedMem();
+	SharedMem* SM_ptr = &sm;
 
+	Producer p1 = Producer(5, FUEL, DB_ptr, SM_ptr);
+	p1.start();
 
-
-	Consumer C1 = Consumer(5, FUEL, DB_ptr);
-	Consumer C2 = Consumer(5, RPM, DB_ptr);
-	C1.start();
-	C2.start();
+	Producer p2 = Producer(5, RPM, DB_ptr, SM_ptr);
+	p2.start();
 
 
+//	Consumer C1 = Consumer(5, FUEL, DB_ptr);
+//	Consumer C2 = Consumer(5, RPM, DB_ptr);
+//	C1.start();
+//	C2.start();
+
+	sleep(20);
 	return 0;
 
 }

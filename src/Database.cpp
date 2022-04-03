@@ -9,8 +9,10 @@
 
 using namespace std;
 
+
 Database::Database()
 {
+
 	ifstream myFile("dataset.csv");
 	if(!myFile.good()){
 		cout << "Failed to find file" << endl;
@@ -53,22 +55,22 @@ Database::Database()
 				}
 				if (position == rpm_column)
 				{
-					rpm.push_back(stoi(value));
+					rpm.push_back(stod(value));
 					//cout << "RPM: " << value << endl;
 				}
 				if (position == temp_column)
 				{
-					temp.push_back(stoi(value));
+					temp.push_back(stod(value));
 					//cout << "TEMP: " << value << endl;
 				}
 				if (position == gear_column)
 				{
-					gear.push_back(stoi(value));
+					gear.push_back(stod(value));
 					//cout << "GEAR: " << value << endl;
 				}
 				if (position == speed_column)
 				{
-					speed.push_back(stoi(value));
+					speed.push_back(stod(value));
 					//cout << "SPEED: " << value << endl;
 				}
 				position++;
