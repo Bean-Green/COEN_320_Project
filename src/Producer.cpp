@@ -10,8 +10,7 @@
 using namespace std;
 
 
-Producer::Producer(double Interval, int type, Database* db_ptr, SharedMem* sm_ptr ) {
-
+Producer::Producer(double Interval, int type, Database* db_ptr, SharedMem* sm_ptr) {
 	this->interval = Interval;
 	this->data_type = type;
 	curr_val = 404;
@@ -20,55 +19,65 @@ Producer::Producer(double Interval, int type, Database* db_ptr, SharedMem* sm_pt
 
 }
 
-
 Producer::~Producer() {
 	/*
 		void
 	*/
 }
 
+
+
 void* Producer::produce(void* arg){
 
 	double tmp;
-	while (true)
-	{
+	int sum  = current_time;
+
+
+	//while (true)
+	//{
+		//CPU.lock();
+		//cout<< data_type<< endl;
+		//sum = PTime.getTime();
+		//sum  = timer;
+		//CPU.unlock();
+
+
 		if(this->data_type == FUEL)
 		{
-			this->curr_val = DB_ptr ->fuel_coms[interval];
+			this->curr_val = DB_ptr ->fuel_coms[sum -1];
 			tmp = this->SM_ptr->access_mem(WRITE, FUEL, curr_val);
-			cout << "FUEL: " << curr_val << endl;
-			//break;
+			//cout << "FUEL: " << curr_val << endl;
 		}
 		else if(this->data_type == RPM)
 		{
-			this->curr_val = DB_ptr->rpm[interval];
-			cout << "RPM: " << curr_val << endl;
-			//break;
+			this->curr_val = DB_ptr->rpm[sum - 1];
+			tmp = this->SM_ptr->access_mem(WRITE, RPM, curr_val);
+			//cout << "RPM: " << curr_val << endl
 		}
 		else if(this->data_type == TEMP)
 		{
-			this->curr_val = DB_ptr->temp[interval];
-			cout << curr_val << endl;
+			this->curr_val = DB_ptr->temp[sum - 1 ];
+			tmp = this->SM_ptr->access_mem(WRITE, TEMP, curr_val);
+			//cout << "TEMP: " << curr_val << endl;
 
 		}
 		else if(this->data_type == GEAR)
 		{
-			this->curr_val = DB_ptr->gear[interval];
-			cout << curr_val << endl;
+			this->curr_val = DB_ptr->gear[sum -1];
+			tmp = this->SM_ptr->access_mem(WRITE, GEAR, curr_val);
+			//cout << "GEAR: "<< curr_val << endl;
 
 		}
 		else if(this->data_type == SPEED)
 		{
-			this->curr_val = DB_ptr->speed[interval];
-			cout << curr_val << endl;
-
+			this->curr_val = DB_ptr->speed[sum -1];
+			tmp = this->SM_ptr->access_mem(WRITE, SPEED, curr_val);
+			//cout << "SPEED: "<< curr_val << endl;
 		}
-	sleep(1);
-	}
+	//sleep(interval);
+	//}
 	return NULL;
-
 }
-
 
 void Producer::start(){
 		//thread thread1(&Producer::consume, this, d);
@@ -81,6 +90,12 @@ void Producer::start(){
 		 cout << "Error:unable to create thread," << rc << endl;
 		 exit(-1);
 	}
-
+	/*rc = pthread_join(t,NULL);
+	if (rc)
+		{
+			 cout << "Error:unable to create thread," << rc << endl;
+			 exit(-1);
+		}*/
 }
+
 

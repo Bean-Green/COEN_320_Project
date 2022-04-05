@@ -36,7 +36,7 @@ Database::Database()
 	//pull row
 	while (getline(myFile, row, '\n') && myFile.good())
 	{
-		//cout << row << " ROW" << endl;;
+		//cout << row  << endl;;
 		position = 0;
 		stringstream column(row);
 
@@ -46,32 +46,31 @@ Database::Database()
 			//split row by ','
 			while (getline(column, value, ',') && column.good())
 			{
-				//cout << value << "::" << position << endl;
 
 				if (position == fuel_column)
 				{
 					fuel_coms.push_back(stod(value));
 					//cout << "FUEL: " << value << endl;
 				}
-				if (position == rpm_column)
+				else if (position == rpm_column)
 				{
 					rpm.push_back(stod(value));
 					//cout << "RPM: " << value << endl;
 				}
-				if (position == temp_column)
+				else if (position == temp_column)
 				{
 					temp.push_back(stod(value));
 					//cout << "TEMP: " << value << endl;
 				}
-				if (position == gear_column)
+				else if (position == gear_column)
 				{
 					gear.push_back(stod(value));
-					//cout << "GEAR: " << value << endl;
+					//cout << "GEAR: " << value;
 				}
-				if (position == speed_column)
+				else if (position == speed_column)
 				{
 					speed.push_back(stod(value));
-					//cout << "SPEED: " << value << endl;
+					//cout << "\tSPEED: " << value << endl;
 				}
 				position++;
 			}
@@ -80,6 +79,7 @@ Database::Database()
 	}
 }
 
+//Tester Database
 Database::Database(int length)
 {
 	for (int i = 0; i < length; i++)
@@ -92,4 +92,3 @@ Database::Database(int length)
 	}
 
 }
-
