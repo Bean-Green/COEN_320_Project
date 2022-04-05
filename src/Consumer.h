@@ -3,12 +3,8 @@
 #ifndef SRC_CONSUMER_H_
 #define SRC_CONSUMER_H_
 
-
 extern int current_time;
-//extern int timer;
 extern mutex CPU;
-
-
 
 class Consumer
 {
@@ -17,7 +13,6 @@ public:
 	virtual ~Consumer();
 	void* consume(void* arg);
 	void start();
-
 private:
 	double curr_fuel;
 	double curr_rpm;
@@ -26,8 +21,6 @@ private:
 	double curr_speed;
 	SharedMem* SM_ptr;
 	double period;
-
-
 };
 
 #endif /* SRC_CONSUMER_H_ */

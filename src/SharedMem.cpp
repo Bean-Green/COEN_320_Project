@@ -1,5 +1,5 @@
 #include "SharedMem.h"
-const int SHM_SIZE = 4096;
+const int SHM_SIZE = 1024;
 
 void write(string name, double value){
 
@@ -76,7 +76,6 @@ SharedMem::SharedMem() {
 SharedMem::~SharedMem() {
 	// TODO Auto-generated destructor stub
 }
-
 
 double SharedMem::access_mem(int rw, int type , double value) //(READ/WRITE, FUEL/RPM/TEMP/GEAR/SPEED, if write VALUE written)
 {

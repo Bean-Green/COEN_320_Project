@@ -1,9 +1,9 @@
-
 #include <iostream>
 #include <vector>
 using namespace std;
 
-class Database{
+class Database
+{
 public:
 	Database();
 	Database(int length);
@@ -12,6 +12,5 @@ public:
 	vector<double> temp;
 	vector<double> gear;
 	vector<double> speed;
-
 };
 

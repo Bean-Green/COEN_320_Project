@@ -6,13 +6,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 using namespace std;
-
 
 Database::Database()
 {
-
 	ifstream myFile("dataset.csv");
 	if(!myFile.good()){
 		cout << "Failed to find file" << endl;
@@ -36,7 +33,6 @@ Database::Database()
 	//pull row
 	while (getline(myFile, row, '\n') && myFile.good())
 	{
-		//cout << row  << endl;;
 		position = 0;
 		stringstream column(row);
 
@@ -90,5 +86,4 @@ Database::Database(int length)
 		gear.push_back(i);
 		speed.push_back(i);
 	}
-
 }

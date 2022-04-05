@@ -12,7 +12,6 @@ PeriodicTimer::PeriodicTimer(){
 	period = 0;
 }
 
-
 extern "C"{
 	void PeriodicTimer::wait_next_activation(sigset_t* sigst) {
 		int dummy;
@@ -56,7 +55,6 @@ extern "C"{
 			perror("Timer Create");
 			exit(-1);
 		}
-		//return sigst;
 	}
 }
 
@@ -83,9 +81,6 @@ extern "C"{
 
 		previous = (current - start)/1000;
 
-
 		return previous;
-
-
 	}
 }

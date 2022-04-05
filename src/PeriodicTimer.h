@@ -14,13 +14,11 @@ extern "C"{
 	#include <stdio.h>
 }
 
-
 #ifndef SRC_PERIODICTIMER_H_
 #define SRC_PERIODICTIMER_H_
 
 #define ONE_THOUSAND	1000
 #define ONE_MILLION		1000000
-
 
 class PeriodicTimer {
 public:

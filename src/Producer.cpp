@@ -25,22 +25,10 @@ Producer::~Producer() {
 	*/
 }
 
-
-
 void* Producer::produce(void* arg){
 
 	double tmp;
 	int sum  = current_time;
-
-
-	//while (true)
-	//{
-		//CPU.lock();
-		//cout<< data_type<< endl;
-		//sum = PTime.getTime();
-		//sum  = timer;
-		//CPU.unlock();
-
 
 		if(this->data_type == FUEL)
 		{
@@ -74,13 +62,11 @@ void* Producer::produce(void* arg){
 			tmp = this->SM_ptr->access_mem(WRITE, SPEED, curr_val);
 			//cout << "SPEED: "<< curr_val << endl;
 		}
-	//sleep(interval);
-	//}
 	return NULL;
 }
 
 void Producer::start(){
-		//thread thread1(&Producer::consume, this, d);
+
 	typedef void * (*THREADFUNCPTR)(void *);
 	pthread_t t;
 	int rc;
@@ -90,12 +76,6 @@ void Producer::start(){
 		 cout << "Error:unable to create thread," << rc << endl;
 		 exit(-1);
 	}
-	/*rc = pthread_join(t,NULL);
-	if (rc)
-		{
-			 cout << "Error:unable to create thread," << rc << endl;
-			 exit(-1);
-		}*/
 }
 
 
