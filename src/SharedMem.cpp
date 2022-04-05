@@ -74,12 +74,12 @@ SharedMem::SharedMem() {
 }
 
 SharedMem::~SharedMem() {
-	// TODO Auto-generated destructor stub
+	//void
 }
 
+//function for threads to us shared memory with mutex protection for each thread type
 double SharedMem::access_mem(int rw, int type , double value) //(READ/WRITE, FUEL/RPM/TEMP/GEAR/SPEED, if write VALUE written)
 {
-
 	if (type == FUEL)
 	{
 		mtx_fuel->lock();

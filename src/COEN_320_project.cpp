@@ -40,7 +40,7 @@ int main()
 
 	timeframe.push_back(period);
 	Producer p2 = Producer(period*ONE_MILLION, RPM, DB_ptr, SM_ptr);
-	cout << "Input desired TEMP Period: ";
+	cout << "Input desired TEMP period: ";
 	cin>> period;
 
 	timeframe.push_back(period);
