@@ -31,7 +31,7 @@ void* Consumer::consume(void *arg)
 	if (last_activation == current_time){
 			return NULL;
 		}
-	cout << "----------" << current_time << "----------" << endl;
+	cout << "----------" << current_time +1 << "----------" << endl;
 	//read fuel
 	this->curr_fuel = this->SM_ptr->access_mem(READ, FUEL, 0);
 	cout << "Current FUEL: " << curr_fuel << endl;
