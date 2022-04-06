@@ -32,7 +32,7 @@ void* Producer::produce(void* arg){
 	}
 	double tmp;
 	int sum  = current_time;
-	this->curr_val = DB_ptr->all_out[(int)(this->data_type) -1][sum-1];
+	this->curr_val = DB_ptr->all_out[(int)(this->data_type) -1][sum];
 	tmp = this->SM_ptr->access_mem(WRITE, this->data_type, curr_val);
 	/*if(this->data_type == FUEL)
 	{

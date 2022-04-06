@@ -75,9 +75,9 @@ extern "C"{
 		clock_gettime(CLOCK_MONOTONIC, &tv);
 		current = tv.tv_sec * ONE_THOUSAND + tv.tv_nsec / ONE_MILLION;
 
-		if ((current - start - previous)/1000 > (uint64_t )period){
+		if ((current - start)/1000 - previous > (uint64_t )period/ ONE_MILLION){
 
-			printf("missed deadline");
+			printf("Missed Period delay of %f\n", (current - start)/1000 - previous );
 		}
 
 		previous = (current - start)/1000;
