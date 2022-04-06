@@ -16,6 +16,7 @@ public:
 	void start();
 
 private:
+	int last_activation;
 	void init_sigst();
 	double interval;
 	double curr_val;

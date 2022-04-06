@@ -73,7 +73,14 @@ Database::Database()
 		}
 		count++;
 	}
+
+	all_out.push_back(fuel_coms);
+	all_out.push_back(rpm);
+	all_out.push_back(temp);
+	all_out.push_back(gear);
+	all_out.push_back(speed);
 }
+
 
 //Tester Database
 Database::Database(int length)

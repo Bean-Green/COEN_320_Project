@@ -16,6 +16,7 @@ Producer::Producer(double Interval, int type, Database* db_ptr, SharedMem* sm_pt
 	curr_val = 404;
 	this->DB_ptr = db_ptr;
 	this->SM_ptr= sm_ptr;
+	last_activation = -1;
 
 }
 
@@ -26,11 +27,14 @@ Producer::~Producer() {
 }
 
 void* Producer::produce(void* arg){
-
+	if (last_activation == current_time){
+		return NULL;
+	}
 	double tmp;
 	int sum  = current_time;
-
-	if(this->data_type == FUEL)
+	this->curr_val = DB_ptr->all_out[(int)(this->data_type) -1][sum-1];
+	tmp = this->SM_ptr->access_mem(WRITE, this->data_type, curr_val);
+	/*if(this->data_type == FUEL)
 	{
 		this->curr_val = DB_ptr ->fuel_coms[sum -1];
 		tmp = this->SM_ptr->access_mem(WRITE, FUEL, curr_val);
@@ -62,7 +66,8 @@ void* Producer::produce(void* arg){
 		tmp = this->SM_ptr->access_mem(WRITE, SPEED, curr_val);
 		//cout << "SPEED: "<< curr_val << endl;
 	}
-
+	*/
+	last_activation = sum;
 	return NULL;
 }
 

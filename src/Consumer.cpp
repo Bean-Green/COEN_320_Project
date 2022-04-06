@@ -14,7 +14,7 @@ Consumer::Consumer(double interval, SharedMem *sm_ptr)
 {
 	this->period = interval;
 	this->SM_ptr = sm_ptr;
-
+	last_activation = -1;
 	curr_fuel = 404;
 	curr_rpm = 404;
 	curr_temp = 404;
@@ -28,6 +28,9 @@ Consumer::~Consumer() {
 
 void* Consumer::consume(void *arg)
 {
+	if (last_activation == current_time){
+			return NULL;
+		}
 	cout << "----------" << current_time << "----------" << endl;
 	//read fuel
 	this->curr_fuel = this->SM_ptr->access_mem(READ, FUEL, 0);
@@ -44,6 +47,8 @@ void* Consumer::consume(void *arg)
 	//read speed
 	this->curr_speed = this->SM_ptr->access_mem(READ, SPEED, 0);
 	cout << "Current SPEED: " << curr_speed << endl;
+
+	last_activation = current_time;
 
 	return NULL;
 }

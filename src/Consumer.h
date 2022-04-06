@@ -14,6 +14,7 @@ public:
 	void* consume(void* arg);
 	void start();
 private:
+	int last_activation;
 	double curr_fuel;
 	double curr_rpm;
 	double curr_temp;
